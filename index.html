@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cais: um Dock para o Mac com widgets dentro</title>
+<meta name="description" content="O Cais fica no lugar do Dock do macOS: seus apps, 67 widgets que abrem em ilhas, um Dock para cada tipo de trabalho e 8 temas. R$ 49, pagamento único.">
+<meta property="og:title" content="Cais: um Dock para o Mac com widgets dentro">
+<meta property="og:description" content="Apps, 67 widgets que abrem em ilhas, workspaces e 8 temas. R$ 49, pagamento único.">
+<meta property="og:image" content="https://77sorryz.github.io/cais-dock/img/poster.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#111113">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<header class="caixa topo">
+  <a class="marca" href="./"><img src="img/apple-touch-icon.png" alt="" width="32" height="32">Cais</a>
+  <nav aria-label="Seções">
+    <a href="#widgets">Widgets</a>
+    <a href="#workspaces">Workspaces</a>
+    <a href="#temas">Temas</a>
+    <a href="#perguntas">Perguntas</a>
+  </nav>
+  <a class="bt p" data-compra href="#comprar">Comprar · <span data-preco>R$ 49</span></a>
+</header>
+
+<main>
+<div class="caixa abre">
+  <div>
+    <h1>Um Dock para o Mac com widgets dentro.</h1>
+    <p class="sub">O Cais fica no lugar do Dock do macOS. Ao lado dos seus apps entram 67 widgets que abrem em ilhas, um Dock diferente para cada tipo de trabalho e 8 temas.</p>
+    <div class="acoes">
+      <a class="bt" data-compra href="#comprar">Comprar por <span data-preco>R$ 49</span></a>
+      <a class="lk" href="#widgets">Ver os 67 widgets</a>
+    </div>
+    <p class="pag">Pagamento único, no Pix ou no cartão. macOS 14 ou mais novo, Mac com chip Apple.</p>
+    <p class="dica">O Dock no pé desta página é uma demonstração com os widgets do app. Passe o mouse, clique num widget para abrir a ilha e troque de workspace nas abas.</p>
+  </div>
+  <figure>
+    <div class="filme"><video controls preload="none" playsinline poster="img/poster.jpg" src="video/cais.mp4" aria-label="Vídeo de apresentação do Cais"></video></div>
+    <figcaption>Apresentação do Cais em 90 segundos, com som.</figcaption>
+  </figure>
+</div>
+
+<section id="widgets">
+  <div class="caixa">
+    <div class="gal-topo">
+      <div>
+        <h2>67 widgets, em 88 visuais</h2>
+        <p class="lead">Cada widget fica no Dock em até quatro tamanhos, e vários têm mais de um visual. <b>Clique em qualquer um para pôr no Dock aqui embaixo</b>, como na biblioteca do app.</p>
+      </div>
+      <div class="seg" id="tam" role="group" aria-label="Tamanho dos widgets">
+        <button type="button" data-t="0" aria-pressed="true">Padrão</button>
+        <button type="button" data-t="1" aria-pressed="false">P</button>
+        <button type="button" data-t="2" aria-pressed="false">M</button>
+        <button type="button" data-t="3" aria-pressed="false">G</button>
+        <button type="button" data-t="4" aria-pressed="false">GG</button>
+      </div>
+    </div>
+    <div class="gal">
+      <div class="cats" id="cats" role="group" aria-label="Categorias"></div>
+      <div id="galeria"></div>
+    </div>
+    <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="ilhas">
+  <div class="caixa">
+    <div class="ilhas-topo">
+      <h2>Um clique no widget abre a ilha dele</h2>
+      <p class="lead">A ilha flutua acima do Dock com o que não cabe no widget: os timers salvos, os controles da música, o uso de memória e de disco, os tempos do Foco. Ela tem a altura do conteúdo e fecha com outro clique.</p>
+    </div>
+    <div class="fila" tabindex="0" aria-label="Quatro ilhas do Cais">
+      <figure><img style="--h:225px" src="img/ilhas/timer.webp" alt="Ilha do Timer com cinco timers salvos e a linha para criar outro" loading="lazy" width="270" height="225"><figcaption>Timer</figcaption></figure>
+      <figure><img style="--h:319px" src="img/ilhas/music.webp" alt="Ilha da Música com capa, progresso e controles" loading="lazy" width="270" height="319"><figcaption>Música</figcaption></figure>
+      <figure><img style="--h:411px" src="img/ilhas/system.webp" alt="Ilha do Monitor do sistema com CPU, memória, GPU, disco e rede" loading="lazy" width="270" height="411"><figcaption>Monitor do sistema</figcaption></figure>
+      <figure><img style="--h:600px" src="img/ilhas/focus.webp" alt="Ilha do Foco com o relógio de 25 minutos, os tempos de pausa e a sequência da semana" loading="lazy" width="270" height="600"><figcaption>Foco</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="claude">
+  <div class="caixa claude">
+    <div>
+      <h2>Seu limite do Claude, sem abrir o terminal</h2>
+      <p class="lead">Para quem usa o Claude Code: o widget Uso do Claude mostra quanto da janela de 5 horas e da semana já foi.</p>
+      <ul class="fatos">
+        <li><b>Previsão pelo ritmo de agora:</b> em quanto tempo o limite enche e se isso acontece antes de zerar.</li>
+        <li><b>Aviso em 80% e 95%</b> da janela de 5 horas.</li>
+        <li>Os números vêm da barra de status do Claude Code, lidos no próprio Mac.</li>
+      </ul>
+    </div>
+    <img src="img/ilhas/claude.webp" alt="Ilha Uso do Claude: 80% das 5 horas, 62% da semana, gráfico com a previsão" loading="lazy" width="330" height="631">
+  </div>
+</section>
+
+<section id="workspaces">
+  <div class="caixa ws">
+    <div class="tela"><img src="img/hub/workspaces.webp" alt="Página Workspaces do Cais com os workspaces Principal e Foco e os perfis prontos" loading="lazy" width="1800" height="1046"></div>
+    <div>
+      <h2>Um Dock para cada tipo de trabalho</h2>
+      <p class="lead">Cada workspace guarda os próprios apps e widgets, e pode ter tema próprio.</p>
+      <ul class="fatos">
+        <li><b>7 perfis prontos</b>, montados só com os apps que você tem instalados:
+          <ul class="perfis"><li>Trabalho</li><li>Foco</li><li>Código</li><li>Criação</li><li>Estudo</li><li>Reunião</li><li>Lazer</li></ul></li>
+        <li><b>Troca</b> pelas abas acima do Dock ou com <kbd>⌃⌥⌘←</kbd> e <kbd>⌃⌥⌘→</kbd>. As abas do Dock desta página fazem essa troca.</li>
+        <li><b>Por horário:</b> um workspace pode entrar sozinho na hora marcada.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="temas">
+  <div class="caixa">
+    <h2>8 temas, ou o seu</h2>
+    <p class="lead">Estas são capturas do Dock de verdade em cada tema. Há também o Personalizado, com a cor que você escolher.</p>
+    <ul class="temas">
+      <li><span>Vidro</span><div class="palco"><img src="img/dock/glass.webp" alt="Dock no tema Vidro" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Fosco</span><div class="palco"><img src="img/dock/frosted.webp" alt="Dock no tema Fosco" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Vidro claro</span><div class="palco"><img src="img/dock/clear.webp" alt="Dock no tema Vidro claro" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Meia-noite</span><div class="palco"><img src="img/dock/midnight.webp" alt="Dock no tema Meia-noite" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Cidade à noite</span><div class="palco"><img src="img/dock/skyline.webp" alt="Dock no tema Cidade à noite" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Chuva neon</span><div class="palco"><img src="img/dock/neon.webp" alt="Dock no tema Chuva neon" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Neve</span><div class="palco"><img src="img/dock/snow.webp" alt="Dock no tema Neve" loading="lazy" width="2200" height="160"></div></li>
+      <li><span>Pôr do sol</span><div class="palco"><img src="img/dock/sunset.webp" alt="Dock no tema Pôr do sol" loading="lazy" width="2200" height="160"></div></li>
+    </ul>
+    <ul class="ajustes fatos">
+      <li><b>Cor automática:</b> o Dock e as ilhas pegam a cor do papel de parede ou da capa da música que está tocando.</li>
+      <li><b>Tamanho e ampliação</b> dos ícones ao passar o mouse.</li>
+      <li><b>Posição</b> na tela e em qual monitor o Dock fica.</li>
+      <li><b>Ocultar automaticamente</b>, se você preferir a tela livre.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="mais">
+  <div class="caixa mais">
+    <h2>O que mais vem no Cais</h2>
+    <dl>
+      <div><dt>Busca <kbd>⌃⌥Espaço</kbd></dt><dd>Apps, arquivos, widgets e ajustes numa ilha. Também faz conta e converte moeda: digite <kbd>100 usd</kbd>.</dd></div>
+      <div><dt>Clipboard <kbd>⌃⌘V</kbd></dt><dd>Histórico do que você copia, com busca e categorias.</dd></div>
+      <div><dt>Janelas</dt><dd>As janelas param antes do Dock em vez de ficar atrás dele. Com <kbd>⌃⌥⌘T</kbd> elas se arrumam lado a lado sozinhas.</dd></div>
+      <div><dt>Live Activities</dt><dd>Pílulas que saem do Dock para avisar do que está acontecendo.</dd></div>
+      <div><dt>Agentes</dt><dd>Aviso quando o Claude Code termina uma tarefa ou precisa de você.</dd></div>
+      <div><dt>Saúde do Cais</dt><dd>Uma página que mostra quanto o próprio Cais está gastando do Mac.</dd></div>
+      <div><dt>Seus apps de sempre</dt><dd>O Cais traz os apps e as pastas do Dock do macOS, na mesma ordem.</dd></div>
+      <div><dt>Backup</dt><dd>Os ajustes saem para um arquivo e voltam em outro Mac.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="comprar">
+  <div class="caixa preco">
+    <div>
+      <h2>Preço</h2>
+      <p class="valor"><span data-preco>R$ 49</span><small>uma vez só, com as atualizações.</small></p>
+      <a class="bt" data-compra="final" href="#comprar">Comprar por <span data-preco>R$ 49</span></a>
+      <p class="obs">O pagamento é feito na Cakto. O código da compra e o link de instalação chegam no seu e-mail assim que o pagamento é aprovado.</p>
+    </div>
+    <table class="tab">
+      <tr><th>Pagamento</th><td>Pix ou cartão, pela Cakto</td></tr>
+      <tr><th>Entrega</th><td>Por e-mail, na hora: código da compra e link de instalação</td></tr>
+      <tr><th>Instalação</th><td>Um comando colado no Terminal, ou um arquivo .dmg</td></tr>
+      <tr><th>Atualizações</th><td>O Cais procura versão nova sozinho e instala com um clique</td></tr>
+      <tr><th>Reembolso</th><td>7 dias para pedir o dinheiro de volta, direto na Cakto</td></tr>
+      <tr><th>Requisitos</th><td>macOS 14 (Sonoma) ou mais novo, em Mac com chip Apple (M1 em diante)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="perguntas">
+  <div class="caixa faq">
+    <h2>Perguntas</h2>
+    <div>
+      <details><summary>O Dock do macOS some?</summary><p>Só se você quiser. Há um ajuste "Esconder o Dock do macOS", e ele volta ao normal quando você sai do Cais.</p></details>
+      <details><summary>Funciona em Mac com Intel?</summary><p>Não. O Cais roda em Macs com chip Apple (M1 em diante), com macOS 14 ou mais novo.</p></details>
+      <details><summary>Por que a instalação é pelo Terminal?</summary><p>O Cais não está na App Store nem passou pela notarização da Apple, que exige uma conta paga de desenvolvedor. Um app assim, baixado pelo navegador, é barrado pelo macOS na primeira abertura. Instalado pelo comando do Terminal ele abre direto. Quem preferir o .dmg precisa liberar o app uma vez em Ajustes do Sistema, Privacidade e Segurança, botão "Abrir Mesmo Assim".</p></details>
+      <details><summary>Como chegam as atualizações?</summary><p>O Cais procura versão nova sozinho. Quando tem, aparece um aviso e um botão "Instalar e reiniciar". O download abre com o código da sua compra, que fica guardado no app.</p></details>
+      <details><summary>Que permissões o Cais pede?</summary><p>Depende dos widgets que você usar: calendário, lembretes, localização para o clima, e assim por diante. Cada uma é pedida só quando o widget precisa, e a página Permissões do app explica o que cada uma liga.</p></details>
+      <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias a partir da compra para pedir o reembolso, pela própria Cakto.</p></details>
+      <details><summary>Já comprei. Onde instalo?</summary><p>Na <a class="lk" href="instalar/">página de instalação</a>, com o código que chegou no e-mail da compra.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="caixa">
+  <div class="linha">
+    <span>Cais <span data-versao></span></span>
+    <a href="instalar/">Instalar (para quem já comprou)</a>
+    <a data-suporte href="#">Suporte</a>
+  </div>
+  <p class="nota">O Cais é um app independente. macOS, Dock, Finder e Safari são marcas da Apple Inc. Claude é marca da Anthropic. Os ícones de outros apps aparecem só para mostrar o Dock em uso e pertencem aos seus donos.</p>
+</footer>
+
+<div class="dock" id="dock" aria-label="Demonstração do Cais">
+  <div class="abas" id="abas" role="group" aria-label="Workspaces"></div>
+  <div class="barra" id="barra"></div>
+</div>
+<div class="ilha" id="ilha"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
+<div class="rot" id="rot" aria-hidden="true"></div>
+
+<script src="config.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

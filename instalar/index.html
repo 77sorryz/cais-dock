@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instalar o Cais</title>
+<meta name="description" content="Instalação do Cais para quem já comprou: código da compra e um comando no Terminal.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111113">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/site.css">
+<style>body{padding-bottom:0}</style>
+</head>
+<body>
+<header class="caixa topo">
+  <a class="marca" href="../"><img src="../img/apple-touch-icon.png" alt="" width="32" height="32">Cais</a>
+</header>
+<main class="caixa inst">
+  <h1>Instalar o Cais</h1>
+  <p>Para quem já comprou. Você precisa do código que chegou no e-mail da compra, no formato <kbd>CAIS-XXXXX-XXXXX-XXXXX</kbd>.</p>
+
+  <h2>1. Digite o código da compra</h2>
+  <div class="campo">
+    <input id="codigo" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="30" placeholder="CAIS-XXXXX-XXXXX-XXXXX" aria-label="Código da compra" aria-describedby="estado">
+    <output id="estado" for="codigo"></output>
+  </div>
+
+  <h2>2. Cole este comando no Terminal</h2>
+  <p>Abra o Terminal (<kbd>⌘Espaço</kbd>, digite Terminal, Enter), cole o comando e aperte Enter.</p>
+  <div class="cmd">
+    <code id="comando"></code>
+    <button class="bt p" id="copiar" type="button">Copiar</button>
+  </div>
+  <p>O comando baixa a versão atual, abre o pacote com o seu código, põe o Cais em Aplicativos e abre. Se já houver um Cais instalado, o antigo vai para a Lixeira. O <a class="lk" href="../instalar.sh">texto do instalador</a> é aberto, para quem quiser ler antes.</p>
+
+  <h2>Prefere não usar o Terminal?</h2>
+  <ol class="passos">
+    <li>Baixe o <a class="lk" href="https://github.com/77sorryz/cais-dock/releases/latest/download/Cais.dmg">Cais.dmg</a> e abra. A senha do arquivo é o código da compra.</li>
+    <li>Arraste o Cais para a pasta Aplicativos e abra.</li>
+    <li>O macOS vai avisar que não conseguiu verificar o app. Clique em "OK", abra Ajustes do Sistema, vá em Privacidade e Segurança e clique em "Abrir Mesmo Assim" ao lado do Cais.</li>
+    <li>Em Ajustes do Cais, página Sobre o Cais, digite o código da compra para receber as atualizações.</li>
+  </ol>
+  <p>Esse aviso aparece porque o Cais não passou pela notarização da Apple, que exige uma conta paga de desenvolvedor. Pelo comando do Terminal ele não aparece.</p>
+
+  <h2>Depois de abrir</h2>
+  <p>O Cais mostra o que cada permissão liga e pede uma de cada vez. As atualizações chegam sozinhas: quando sair versão nova, aparece um aviso com o botão "Instalar e reiniciar".</p>
+  <p>Algo não funcionou? <a class="lk" data-suporte href="#">Fale com o suporte</a>.</p>
+</main>
+<script src="../config.js"></script>
+<script>
+(() => {
+  const C = window.CAIS, $ = s => document.querySelector(s);
+  const campo = $('#codigo'), estado = $('#estado'), cmd = $('#comando');
+  document.querySelectorAll('[data-suporte]').forEach(a => a.href = C.suporte);
+  const limpa = s => s.toUpperCase().replace(/\s+/g, '');
+  const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+  const bytes = h => new Uint8Array(h.match(/../g).map(x => parseInt(x, 16)));
+  let prova = null, vez = 0;
+  fetch('../codigo.json').then(r => r.json()).then(j => { prova = j; muda(); }).catch(() => {});
+  async function confere(code) {
+    const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(code), 'PBKDF2', false, ['deriveBits']);
+    return hex(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: bytes(prova.sal), iterations: prova.voltas }, k, 256)) === prova.resumo;
+  }
+  async function muda() {
+    const code = limpa(campo.value), n = ++vez;
+    cmd.textContent = `curl -fsSL ${C.base}/instalar.sh | bash -s -- ${/^[A-Z0-9-]+$/.test(code) ? code : 'SEU-CODIGO'}`;
+    estado.className = ''; estado.textContent = '';
+    if (!code || !prova || !crypto.subtle) return;
+    if (code.length < 22) { estado.textContent = 'Continue digitando…'; return; }
+    const ok = await confere(code).catch(() => null);
+    if (n !== vez || ok === null) return;
+    estado.className = ok ? 'ok' : 'nao';
+    estado.textContent = ok ? 'Código confere.' : 'Este código não confere. Copie de novo do e-mail da compra.';
+  }
+  campo.addEventListener('input', muda);
+  // O link do e-mail da compra pode trazer o código depois do # (essa parte não é enviada a nenhum servidor).
+  if (location.hash.length > 1) { campo.value = limpa(decodeURIComponent(location.hash.slice(1))); history.replaceState(null, '', location.pathname); }
+  muda();
+  $('#copiar').onclick = async e => {
+    try { await navigator.clipboard.writeText(cmd.textContent); e.target.textContent = 'Copiado'; }
+    catch { const r = document.createRange(); r.selectNodeContents(cmd); const s = getSelection(); s.removeAllRanges(); s.addRange(r); e.target.textContent = 'Selecionado, ⌘C'; }
+    setTimeout(() => e.target.textContent = 'Copiar', 1800);
+  };
+})();
+</script>
+</body>
+</html>
