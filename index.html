@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cais: um Dock para o Mac com widgets dentro</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cais: o Dock do Mac, com widgets dentro</title>
 <meta name="description" content="O Cais fica no lugar do Dock do macOS: seus apps, 67 widgets que abrem em ilhas, um Dock para cada momento e 8 temas. R$ 49, pagamento único.">
-<meta property="og:title" content="Cais: um Dock para o Mac com widgets dentro">
+<meta property="og:title" content="Cais: o Dock do Mac, com widgets dentro">
 <meta property="og:description" content="Apps, 67 widgets que abrem em ilhas, workspaces e 8 temas. R$ 49, pagamento único.">
 <meta property="og:image" content="https://77sorryz.github.io/cais-dock/img/poster.jpg">
 <meta property="og:type" content="website">
@@ -13,128 +13,128 @@
 <meta name="theme-color" content="#1f2260">
 <link rel="icon" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site.css?v=1794438088">
 </head>
 <body>
+<canvas id="ceu" aria-hidden="true"></canvas>
 
-<header class="nav">
-  <a class="marca" href="./"><img src="img/apple-touch-icon.png" alt="" width="30" height="30">Cais</a>
-  <a class="i" href="#widgets">Widgets</a>
-  <a class="i" href="#ilhas">Ilhas</a>
-  <a class="i" href="#workspaces">Workspaces</a>
-  <a class="i" href="#temas">Temas</a>
-  <a class="bt p" data-compra href="#comprar">Comprar · <span data-preco>R$ 49</span></a>
+<header class="topo-fixo">
+  <a class="marca" href="./"><img src="img/apple-touch-icon.png" alt="" width="28" height="28">Cais</a>
+  <nav aria-label="Capítulos">
+    <a href="#widgets">Widgets</a>
+    <a href="#ilhas">Ilhas</a>
+    <a href="#workspaces">Workspaces</a>
+    <a href="#temas">Temas</a>
+    <a href="#perguntas">Perguntas</a>
+  </nav>
+  <a class="bt p" data-compra href="#comprar">Comprar</a>
 </header>
 
 <main>
-<div class="capa" id="capa">
-  <canvas aria-hidden="true"></canvas>
-  <h1>Um Dock para o Mac com widgets dentro.</h1>
-  <p class="sub">Seus apps, 67 widgets, ilhas e workspaces. No lugar do Dock do macOS.</p>
-  <div class="acoes">
-    <a class="bt" data-compra href="#comprar">Comprar por <span data-preco>R$ 49</span></a>
-    <button class="bt vidro" type="button" id="ver-filme">▶ Ver o filme</button>
+<div class="jornada" id="jornada">
+  <i class="marco" id="inicio" style="--n:0"></i>
+  <i class="marco" id="widgets" style="--n:1"></i>
+  <i class="marco" id="ilhas" style="--n:2"></i>
+  <i class="marco" id="workspaces" style="--n:3"></i>
+  <i class="marco" id="temas" style="--n:4"></i>
+
+  <div class="cena" id="cena" data-cap="0">
+    <div class="cap on" data-i="0">
+      <h1>Cais</h1>
+      <p class="lema">O Dock do Mac, com widgets dentro.</p>
+      <div class="acoes">
+        <a class="bt" data-compra href="#comprar">Comprar por <span data-preco>R$ 49</span></a>
+        <button class="bt claro" type="button" id="ver-filme">▶ Ver o filme</button>
+      </div>
+      <p class="req">Pagamento único. macOS 14 ou mais novo, Mac com chip Apple.</p>
+    </div>
+
+    <div class="cap" data-i="1">
+      <h2><span class="sol">67 widgets.</span></h2>
+      <p class="dois">Relógio, clima, música, sistema. <b>E mais 63, em 88 visuais e quatro tamanhos.</b></p>
+      <div class="acoes"><a class="bt claro p" href="#biblioteca">Ver a biblioteca inteira</a></div>
+    </div>
+
+    <div class="cap" data-i="2">
+      <h2>Um clique abre a ilha.</h2>
+      <p class="dois">Controles e ajustes de cada widget, <b>flutuando acima do Dock.</b></p>
+      <div class="escolhe" id="escolhe-ilhas" role="group" aria-label="Ilhas"></div>
+    </div>
+
+    <div class="cap" data-i="3">
+      <h2>Um Dock para cada momento.</h2>
+      <p class="dois">7 perfis prontos. <b>Troque pelas abas, por atalho ou por horário.</b></p>
+    </div>
+
+    <div class="cap" data-i="4">
+      <h2>8 temas. Ou a cor da sua música.</h2>
+      <p class="dois">O Dock pega a cor do papel de parede <b>ou da capa que está tocando.</b></p>
+      <div class="escolhe" id="escolhe-temas" role="group" aria-label="Temas"></div>
+    </div>
+
+    <div class="peca fita" id="passa" aria-hidden="true"></div>
+    <div class="peca abas-caixa"><div class="abas" id="abas-ws" role="group" aria-label="Workspaces" data-vidro></div></div>
+    <div class="peca temas-ui"><div class="real" id="real"></div></div>
+
+    <div class="ilha" id="ilha"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
+    <div class="rot" id="rot" aria-hidden="true"></div>
+    <div class="doca"><div class="barra" id="barra" aria-label="Demonstração do Cais" data-vidro></div></div>
+
+    <div class="trilha vidro" id="trilha" role="group" aria-label="Capítulo"></div>
+    <p class="role">Role para ver o Cais em uso</p>
   </div>
-  <div class="ilha" id="ilha0"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
-  <div class="rot" id="rot0" aria-hidden="true"></div>
-  <div class="doca"><div class="barra" id="barra0" aria-label="Demonstração do Cais"></div></div>
-  <p class="toque">Clique num widget.</p>
 </div>
 
-<section id="widgets">
-  <div class="tit sobe">
-    <h2><span class="cor">67 widgets.</span></h2>
-    <p>Em 88 visuais e quatro tamanhos. Do relógio ao uso do Claude.</p>
-  </div>
-  <div class="passa" id="passa" aria-hidden="true"></div>
+<section id="biblioteca" data-clima="fundo">
   <div class="caixa">
-    <div class="mais-w"><button class="bt vidro" type="button" id="abre-todos" aria-expanded="false" aria-controls="todos">Ver todos os widgets</button></div>
-    <div id="todos" hidden>
-      <div class="gal-topo">
-        <div class="cats" id="cats" role="group" aria-label="Categorias"></div>
-        <div class="seg" id="tam" role="group" aria-label="Tamanho dos widgets">
-          <button type="button" data-t="0" aria-pressed="true">Padrão</button>
-          <button type="button" data-t="1" aria-pressed="false">P</button>
-          <button type="button" data-t="2" aria-pressed="false">M</button>
-          <button type="button" data-t="3" aria-pressed="false">G</button>
-          <button type="button" data-t="4" aria-pressed="false">GG</button>
+    <div class="tit sobe">
+      <h2>A biblioteca inteira.</h2>
+      <p class="dois">No app ela é uma ilha presa ao Dock. <b>Aqui estão os mesmos 88 visuais.</b></p>
+    </div>
+    <div class="bib vidro escuro sobe">
+      <div class="bib-lado" id="cats" role="group" aria-label="Categorias"></div>
+      <div>
+        <div class="bib-topo">
+          <strong id="bib-nome">Todos os widgets<span>88</span></strong>
+          <div class="seg" id="tam" role="group" aria-label="Tamanho dos widgets">
+            <button type="button" data-t="0" aria-pressed="true">Padrão</button>
+            <button type="button" data-t="1" aria-pressed="false">P</button>
+            <button type="button" data-t="2" aria-pressed="false">M</button>
+            <button type="button" data-t="3" aria-pressed="false">G</button>
+            <button type="button" data-t="4" aria-pressed="false">GG</button>
+          </div>
         </div>
+        <div id="galeria" tabindex="0"></div>
       </div>
-      <div id="galeria"></div>
     </div>
   </div>
 </section>
 
-<section id="ilhas">
-  <div class="caixa">
-    <div class="tit sobe">
-      <h2>Um clique abre a ilha.</h2>
-      <p>Controles e ajustes de cada widget, flutuando acima do Dock.</p>
-    </div>
-    <div class="palco sobe" id="palco-ilhas">
-      <canvas aria-hidden="true"></canvas>
-      <div class="ilha" id="ilha1"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
-      <div class="doca"><div class="barra" id="barra1"></div></div>
-    </div>
-    <div class="escolhe" id="escolhe-ilhas" role="group" aria-label="Ilhas"></div>
-  </div>
-</section>
-
-<section id="workspaces">
-  <div class="caixa">
-    <div class="tit sobe">
-      <h2>Um Dock para cada momento.</h2>
-      <p>7 perfis prontos. Troque pelas abas, por atalho ou por horário.</p>
-    </div>
-    <div class="palco sobe" id="palco-ws">
-      <canvas aria-hidden="true"></canvas>
-      <div class="abas" id="abas-ws" role="group" aria-label="Workspaces"></div>
-      <div class="doca"><div class="barra" id="barra2"></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="temas">
-  <div class="caixa">
-    <div class="tit sobe">
-      <h2>8 temas. Ou a cor da sua música.</h2>
-      <p>O Dock pega a cor do papel de parede ou da capa que está tocando.</p>
-    </div>
-    <div class="palco sobe" id="palco-temas">
-      <canvas aria-hidden="true"></canvas>
-      <p class="nome" id="nome-tema" aria-live="polite"></p>
-      <div class="real" id="real"></div>
-    </div>
-    <div class="escolhe" id="escolhe-temas" role="group" aria-label="Temas"></div>
-    <p class="nota">O Dock de cada tema é uma captura do app de verdade.</p>
-  </div>
-</section>
-
-<section id="mais">
+<section id="mais" data-clima="cidade">
   <div class="caixa">
     <div class="tit sobe"><h2>E tem mais.</h2></div>
     <div class="grade">
-      <div class="cel c7 busca sobe">
+      <div class="cel vidro c7 sobe">
         <div class="arte" aria-hidden="true"><span class="tecla">⌃</span><span class="tecla">⌥</span><span class="tecla l">Espaço</span></div>
         <h3>Busca</h3><p>Apps, arquivos, contas e moedas. Digite <kbd>100 usd</kbd>.</p>
       </div>
-      <div class="cel c5 sobe">
+      <div class="cel vidro c5 sobe">
         <div class="arte" aria-hidden="true"><span class="tecla">⌃</span><span class="tecla">⌘</span><span class="tecla">V</span></div>
         <h3>Clipboard</h3><p>Tudo o que você copiou, com busca.</p>
       </div>
-      <div class="cel c5 alta claude sobe">
+      <div class="cel vidro c5 alta claude sobe">
         <h3>Uso do Claude</h3><p>Seu limite do Claude Code, com previsão e aviso.</p>
         <img src="img/ilhas/claude.webp" alt="Ilha Uso do Claude com 80% das 5 horas e 62% da semana" loading="lazy" width="330" height="631">
       </div>
-      <div class="cel c7 janelas sobe">
+      <div class="cel vidro c7 janelas sobe">
         <div class="arte" aria-hidden="true"><div class="jan"><i></i><i></i><b></b></div></div>
         <h3>Janelas</h3><p>Param antes do Dock e se arrumam lado a lado.</p>
       </div>
-      <div class="cel c4 sobe">
-        <div class="arte" aria-hidden="true"><span class="pilula"><i></i>Tarefa concluída</span></div>
+      <div class="cel vidro c4 sobe">
+        <div class="arte" aria-hidden="true"><span class="pilula vidro escuro"><i></i>Tarefa concluída</span></div>
         <h3>Avisos</h3><p>Uma pílula sai do Dock quando o Claude Code termina.</p>
       </div>
-      <div class="cel c3 sobe">
+      <div class="cel vidro c3 sobe">
         <div class="arte" aria-hidden="true"><div class="apps"><img src="img/icons/finder.webp" alt="" loading="lazy"><img src="img/icons/safari.webp" alt="" loading="lazy"><img src="img/icons/notes.webp" alt="" loading="lazy"><img src="img/icons/music.webp" alt="" loading="lazy"></div></div>
         <h3>Seus apps</h3><p>Vêm do Dock do macOS, na mesma ordem.</p>
       </div>
@@ -142,23 +142,27 @@
   </div>
 </section>
 
-<div class="preco" id="comprar">
-  <canvas aria-hidden="true"></canvas>
-  <p class="valor"><span data-preco>R$ 49</span></p>
-  <p class="de">Uma vez só. Com as atualizações.</p>
-  <a class="bt" data-compra="final" href="#comprar">Comprar o Cais</a>
-  <ul class="fatos">
-    <li>Pix ou cartão</li>
-    <li>Entrega na hora, por e-mail</li>
-    <li>7 dias para reembolso</li>
-    <li>macOS 14 ou mais novo, chip Apple</li>
-  </ul>
-</div>
+<section id="comprar" data-clima="por">
+  <div class="caixa preco">
+    <div class="sobe">
+      <p class="valor"><span data-preco>R$ 49</span></p>
+      <p class="de">Uma vez só. Com as atualizações.</p>
+      <a class="bt" data-compra="final" href="#comprar">Comprar o Cais</a>
+    </div>
+    <ul class="fatos vidro escuro sobe">
+      <li><span>Pagamento</span><b>Pix ou cartão</b></li>
+      <li><span>Entrega</span><b>Na hora, por e-mail</b></li>
+      <li><span>Reembolso</span><b>7 dias</b></li>
+      <li><span>Sistema</span><b>macOS 14 ou mais novo</b></li>
+      <li><span>Mac</span><b>Chip Apple (M1 em diante)</b></li>
+    </ul>
+  </div>
+</section>
 
-<section id="perguntas">
-  <div class="caixa">
+<section id="perguntas" data-clima="fundo">
+  <div class="caixa faq-caixa">
     <div class="tit sobe"><h2>Perguntas.</h2></div>
-    <div class="faq">
+    <div class="faq vidro escuro sobe">
       <details><summary>O Dock do macOS some?</summary><p>Só se você quiser. Há um ajuste "Esconder o Dock do macOS", e ele volta ao normal quando você sai do Cais.</p></details>
       <details><summary>Funciona em Mac com Intel?</summary><p>Não. O Cais roda em Macs com chip Apple (M1 em diante), com macOS 14 ou mais novo.</p></details>
       <details><summary>Como recebo depois de pagar?</summary><p>O pagamento é feito na Cakto. Assim que ele é aprovado, chega um e-mail com o código da compra e o link de instalação.</p></details>
@@ -181,13 +185,13 @@
 </footer>
 
 <dialog id="filme" aria-label="Filme de apresentação do Cais">
-  <form method="dialog"><button class="bt p vidro">Fechar</button></form>
+  <form method="dialog"><button class="bt claro p">Fechar</button></form>
   <video controls preload="none" playsinline poster="img/poster.jpg" src="video/cais.mp4"></video>
 </dialog>
 
-<script src="config.js"></script>
-<script src="js/dados.js"></script>
-<script src="js/mar.js"></script>
-<script src="js/site.js"></script>
+<script src="config.js?v=1794438088"></script>
+<script src="js/dados.js?v=1794438088"></script>
+<script src="js/mar.js?v=1794438088"></script>
+<script src="js/site.js?v=1794438088"></script>
 </body>
 </html>
